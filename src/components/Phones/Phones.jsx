@@ -12,7 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { Audio } from "react-loader-spinner";
+import { Audio, Dna } from "react-loader-spinner";
 
 const Phones = () => {
   const [phones, setPhones] = useState([]);
@@ -51,6 +51,15 @@ const Phones = () => {
             ariaLabel="three-dots-loading"
             wrapperStyle
             wrapperClass
+          />
+
+          <Dna
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="dna-loading"
+            wrapperStyle={{}}
+            wrapperClass="dna-wrapper"
           />
         </div>
       )}
