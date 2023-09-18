@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -12,10 +12,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { Audio } from "react-loader-spinner";
+
 const Phones = () => {
   const [phones, setPhones] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useState(() => {
+  useEffect(() => {
     //        fetch("https://openapi.programming-hero.com/api/phones?search=iphone")
     //       .then((res) => res.json())
     //       .then((data) => setPhones(data.data));
@@ -32,11 +35,26 @@ const Phones = () => {
           return obj;
         });
         setPhones(phonesWithFakeData);
+        setLoading(false);
       });
   }, []);
 
   return (
     <div>
+      {loading && (
+        <div className="flex justify-center">
+          <Audio
+            height="80"
+            width="80"
+            radius="9"
+            color="green"
+            ariaLabel="three-dots-loading"
+            wrapperStyle
+            wrapperClass
+          />
+        </div>
+      )}
+
       <h2 className="text-5xl">Phones: {phones.length}</h2>
       <BarChart width={1200} height={400} data={phones}>
         <Bar dataKey="price" fill="#8884d8" />
